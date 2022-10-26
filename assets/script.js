@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     $("#search-input").on("click", function () {
+    
 
         var searchTerm = $("#search-value").val();
 
@@ -45,9 +46,8 @@ $(document).ready(function () {
 
 
     $.ajax({
-        type: "GET",
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&appid= 1955f9d75dd1ef15a746fd6792cc2f0d",
-
+        Method: "GET",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&appid=1955f9d75dd1ef15a746fd6792cc2f0d"
     }).then(function (data) {
 
         if (history.indexOf(searchTerm) === -1) {
@@ -66,16 +66,16 @@ $(document).ready(function () {
 
         var card = $("<div>").addClass("card");
         var cardBody = $("<div>").addClass("card-body");
-        var wind = $("<p>").addClass("card-text").text("Wind: " + data.wind + " MPH");
+        var wind = $("<p>").addClass("card-text").text("Wind: " + data.wind.speed + " MPH");
         var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
-        var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " K");
+        var temp = $("<p>").addClass("card-text").text("Temp: " + data.main.temp + " F");
         console.log(data)
         var lon = data.coord.lon;
         var lat = data.coord.lat;
 
         $.ajax({
             Method: "GET",
-            url: "https://api.openweathermap.org/data/2.5/uvi?appid= 1955f9d75dd1ef15a746fd6792cc2f0d&"
+            url: "https://api.openweathermap.org/data/2.5/uvi?appid=1955f9d75dd1ef15a746fd6792cc2f0d"
 
 
         }).then(function (response) {
@@ -83,7 +83,6 @@ $(document).ready(function () {
 
             var uvColor;
             var uvResponse = response.value;
-            var uvIndex = $("<p>").addClass("card-text").text("UV Index: ");
             var btn = $("<span>").addClass("btn btn-sm").text(uvResponse);
 
 
@@ -129,10 +128,11 @@ $(document).ready(function () {
                     var cardFive = $("<div>").addClass("card bg-primary text-white");
                     var cardBodyFive = $("<div>").addClass("card-body p-2");
                     var humidFive = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
-                    var tempFive = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
+                    var tempFive = $("<p>").addClass("card-text").text("Temp: " + data.list[i].main.temp + " °F");
+                    var wind = $("<p>").addClass("card-text").text("Wind: " + data.list[1].wind.speed + " MPH");
 
 
-                    colFive.append(cardFive.append(cardBodyFive.append(titleFive, imgFive, tempFive, humidFive)));
+                    colFive.append(cardFive.append(cardBodyFive.append(titleFive, imgFive, tempFive, humidFive, wind)));
 
                     $("#forecast .row").append(colFive);
                 }
