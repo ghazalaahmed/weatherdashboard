@@ -68,7 +68,7 @@ $(document).ready(function () {
         var cardBody = $("<div>").addClass("card-body");
         var wind = $("<p>").addClass("card-text").text("Wind: " + data.wind.speed + " MPH");
         var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
-        var temp = $("<p>").addClass("card-text").text("Temp: " + data.main.temp + " F");
+        var temp = $("<p>").addClass("card-text").text("Temp: " + data.main.temp + "°F");
         console.log(data)
         var lon = data.coord.lon;
         var lat = data.coord.lat;
