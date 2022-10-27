@@ -1,4 +1,4 @@
-# Weather Dashboard
+# Description
 For challenge 6 homework, we were asked to create a weather dashboard that will run in the browser.
 
 # User Story
